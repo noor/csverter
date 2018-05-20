@@ -1,0 +1,57 @@
+{
+  "name": "csverter",
+  "version": "1.0.0",
+  "description": "A simple JSON to CSV converter",
+  "author": "Noor AlHiraki <alhiraki@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/noor/csverter#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noor/csverter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noor/csverter/issues"
+  },
+  "main": "build/index.js",
+  "module": "src/index.js",
+  "unpkg": "dist/csverter.min.js",
+  "browser": "dist/csverter.min.js",
+  "jsdelivr": "dist/csverter.min.js",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-plugin-import": "^2.13.0",
+    "esm": "^3.0.74",
+    "mocha": "^5.2.0",
+    "rollup": "^0.63.5",
+    "rollup-plugin-license": "^0.7.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify-es": "0.0.1"
+  },
+  "scripts": {
+    "lint": "eslint --no-ignore --ext js src test .rolluprc.js",
+    "build:base": "rollup --config .rolluprc.js",
+    "build:watch": "npm run build:base -- --watch",
+    "build:nodejs": "npm run build:base -- --environment TARGET:nodejs",
+    "build:browser": "npm run build:base -- --environment TARGET:browser",
+    "build:browser:min": "npm run build:browser -- --environment MINIFY",
+    "build:browser:all": "npm run build:browser && npm run build:browser:min",
+    "build": "npm run lint && npm run build:nodejs && npm run build:browser:all",
+    "prepare": "npm run build",
+    "test:base": "mocha --check-leaks --ui qunit --require esm",
+    "test:src": "npm run test:base -- test/src",
+    "test:src:watch": "npm run test:src -- --watch --reporter min",
+    "test:built": "npm run build && npm run test:base -- test/dist",
+    "test": "npm run build && npm run test:base -- test/src test/dist"
+  },
+  "keywords": [
+    "csv",
+    "json",
+    "convert"
+  ],
+  "directories": {
+    "test": "test"
+  }
+}
