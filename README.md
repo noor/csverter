@@ -21,7 +21,7 @@ const csverter = require('csverter');
 or directly in your html:
 
 ```html
-<script src="csverter.min.js"></script>
+<script src="dist/csverter.min.js"></script>
 ```
 
 

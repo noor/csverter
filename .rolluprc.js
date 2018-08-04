@@ -18,7 +18,7 @@ const licenseTemplate = `
 
     <%= pkg.name %> v<%= pkg.version %>
     <%= pkg.description %>
-    <%= pkg.repository.url %>
+    <%= pkg.homepage %>
 
     Copyright (c) <%= moment().format('YYYY') %>, <%= pkg.author %>
 
